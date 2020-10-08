@@ -7,11 +7,11 @@ package com.nosymptoms.questionnaireapp;
  * Created On: October 7, 2020
  */
 
-public abstract class Question<T> implements Comparable<T> {
+public class Question{
     public int questionID;
     protected QuestionType questionType;
     protected String questionText;
-    private T answer;
+    private String answer;
 
     enum QuestionType {
         MULTIPLE_CHOICE,
@@ -31,7 +31,7 @@ public abstract class Question<T> implements Comparable<T> {
         this.questionText = questionText;
     }
 
-    public Question(int questionID, QuestionType questionType, String questionText, T answer) {
+    public Question(int questionID, QuestionType questionType, String questionText, String answer) {
         this.questionID = questionID;
         this.questionType = questionType;
         this.questionText = questionText;
@@ -79,7 +79,7 @@ public abstract class Question<T> implements Comparable<T> {
      *
      * @return answer
      */
-    public T getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 
@@ -118,7 +118,9 @@ public abstract class Question<T> implements Comparable<T> {
      *
      * @param answer
      */
-    public void setAnswer(T answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
+
+
 }

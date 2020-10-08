@@ -1,5 +1,7 @@
 package com.nosymptoms.questionnaireapp;
 
+import android.content.Context;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -41,8 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setUp();
         queryUsers("lastName", "Peterson");                                            // Queries The firestore database
 
-
-
+        Question q = new Question();
         //User u = new User(660123,"email@email.com","fName","lName","a;lsdkhjfgbasdlfk");          // Un commenting the 2 lines of code and running will ADD to the firestore database.
         //createUser(u);
 

@@ -12,6 +12,7 @@ public class Question{
     protected QuestionType questionType;
     protected String questionText;
     private String answer;
+    private String[] potentialAnswers;
 
     enum QuestionType {
         MULTIPLE_CHOICE,
@@ -31,11 +32,12 @@ public class Question{
         this.questionText = questionText;
     }
 
-    public Question(int questionID, QuestionType questionType, String questionText, String answer) {
+    public Question(int questionID, QuestionType questionType, String questionText, String answer, String[] potentialAnswers) {
         this.questionID = questionID;
         this.questionType = questionType;
         this.questionText = questionText;
         this.answer = answer;
+        this.potentialAnswers = potentialAnswers;
     }
 
     public Question() {
@@ -43,10 +45,10 @@ public class Question{
         this.questionType = QuestionType.NONE;
         this.questionText = "";
         this.answer = null;
+        this.potentialAnswers = null;
     }
 
     //getters:
-
     /**
      * Get the ID of the question
      *
@@ -83,9 +85,16 @@ public class Question{
         return answer;
     }
 
+    /**
+     * Get the potential answer of the question
+     *
+     * @return potentialAnswers
+     */
+    public String[] getPotentialAnswers (){return potentialAnswers;}
+
+
 
     //setters:
-
     /**
      * Sets the unique ID of the question.
      *
@@ -122,5 +131,11 @@ public class Question{
         this.answer = answer;
     }
 
+    /**
+     * Sets the potential answer of the selected question object.
+     *
+     * @param potentialAnswers
+     */
+    public void setPotentialAnswers(String[] potentialAnswers){this.potentialAnswers = potentialAnswers;}
 
 }

@@ -43,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
         setUp();
         queryUsers("lastName", "Peterson");                                            // Queries The firestore database
 
-        Question q = new Question();
+        String[] potentialAnswers = new String[]{"Yes", "No"};
+        Question q = new Question(4, Question.QuestionType.TRUE_FALSE,"Are you down with the sickness?", null, potentialAnswers);
+        createQuestion(q);
+
         //User u = new User(660123,"email@email.com","fName","lName","a;lsdkhjfgbasdlfk");          // Un commenting the 2 lines of code and running will ADD to the firestore database.
         //createUser(u);
 

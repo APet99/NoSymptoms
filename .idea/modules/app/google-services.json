@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "584895223076",
+    "firebase_url": "https://nosymptoms-db.firebaseio.com",
+    "project_id": "nosymptoms-db",
+    "storage_bucket": "nosymptoms-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584895223076:android:5544553a56826df75c4fb1",
+        "android_client_info": {
+          "package_name": "com.nosymptoms.questionnaireapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584895223076-3ghngujfgsu35b51l4prar6gir68iuju.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nosymptoms.questionnaireapp",
+            "certificate_hash": "dc736a60aa6514e38246126d1fc534587dc363fa"
+          }
+        },
+        {
+          "client_id": "584895223076-r5p3688946qgjla5mjttopk3dove7ld2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHwWcQ7ZXmL3PbeI98ngh_JjWjEDUZsR4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584895223076-r5p3688946qgjla5mjttopk3dove7ld2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

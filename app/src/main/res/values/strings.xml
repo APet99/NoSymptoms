@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">No Symptoms</string>
+    <string name="hello_database">Hello Database!</string>
+
 </resources>

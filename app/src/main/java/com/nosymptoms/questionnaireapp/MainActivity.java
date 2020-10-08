@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setUp();
-        queryUsers("lastName", "Peterson");                                            // Queries The firestore database
+        //queryUsers("lastName", "Peterson");                                            // Queries The firestore database
 
-        String[] potentialAnswers = new String[]{"Yes", "No"};
-        Question q = new Question(4, Question.QuestionType.TRUE_FALSE,"Are you down with the sickness?", null, potentialAnswers);
-        createQuestion(q);
+        //String[] potentialAnswers = new String[]{"Yes", "No"};
+        //Question q = new Question(4, Question.QuestionType.TRUE_FALSE,"Are you down with the sickness?", potentialAnswers);
+        //createQuestion(q);
 
         //User u = new User(660123,"email@email.com","fName","lName","a;lsdkhjfgbasdlfk");          // Un commenting the 2 lines of code and running will ADD to the firestore database.
         //createUser(u);

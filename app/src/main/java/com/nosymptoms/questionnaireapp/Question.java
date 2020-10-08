@@ -11,7 +11,6 @@ public class Question{
     public int questionID;
     protected QuestionType questionType;
     protected String questionText;
-    private String answer;
     private String[] potentialAnswers;
 
     enum QuestionType {
@@ -32,11 +31,10 @@ public class Question{
         this.questionText = questionText;
     }
 
-    public Question(int questionID, QuestionType questionType, String questionText, String answer, String[] potentialAnswers) {
+    public Question(int questionID, QuestionType questionType, String questionText, String[] potentialAnswers) {
         this.questionID = questionID;
         this.questionType = questionType;
         this.questionText = questionText;
-        this.answer = answer;
         this.potentialAnswers = potentialAnswers;
     }
 
@@ -44,7 +42,6 @@ public class Question{
         this.questionID = -1;
         this.questionType = QuestionType.NONE;
         this.questionText = "";
-        this.answer = null;
         this.potentialAnswers = null;
     }
 
@@ -74,15 +71,6 @@ public class Question{
      */
     public String getQuestionText() {
         return questionText;
-    }
-
-    /**
-     * Get the answer of the question
-     *
-     * @return answer
-     */
-    public String getAnswer() {
-        return answer;
     }
 
     /**
@@ -120,15 +108,6 @@ public class Question{
      */
     public void setQuestionText(String questionText) {
         this.questionText = questionText;
-    }
-
-    /**
-     * Sets the answer of the selected question object.
-     *
-     * @param answer
-     */
-    public void setAnswer(String answer) {
-        this.answer = answer;
     }
 
     /**

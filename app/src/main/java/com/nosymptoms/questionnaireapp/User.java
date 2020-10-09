@@ -5,8 +5,6 @@ import androidx.annotation.Nullable;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.GeoPoint;
 
-import javax.annotation.Nonnull;
-
 
 /**
  * User of the No Symptoms Questionnaire App.
@@ -31,6 +29,7 @@ public class User {
     public User(int idNumber, String email, String firstName, String lastName, String password,
                 Timestamp creationTimestamp, Timestamp lastAccessedTimestamp,
                 GeoPoint lastAccessedLocation) {
+
         this.idNumber = idNumber;
         this.email = email;
         this.firstName = firstName;

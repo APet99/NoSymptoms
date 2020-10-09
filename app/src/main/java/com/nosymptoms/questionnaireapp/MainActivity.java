@@ -25,7 +25,7 @@ import java.util.HashMap;
 /**
  * Last Edited: Alex Peterson       AlexJoseph.Peterson@CalBaptist.edu
  * Last Edit Date:  October 7, 2020
- * */
+ */
 
 public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -47,10 +47,26 @@ public class MainActivity extends AppCompatActivity {
         //Question q = new Question(4, Question.QuestionType.TRUE_FALSE,"Are you down with the sickness?", potentialAnswers);
         //createQuestion(q);
 
-        //User u = new User(660123,"email@email.com","fName","lName","a;lsdkhjfgbasdlfk");          // Un commenting the 2 lines of code and running will ADD to the firestore database.
+        User u = new User(660123, "email@email.com", "fName", "lName", "a;lsdkhjfgbasdlfk");          // Un commenting the 2 lines of code and running will ADD to the firestore database.
+
+        String[] flaggedAnswers = new String[]{"No"};
+
+        String[] potentialAnswers1 = new String[]{"Yes", "No"};
+        Question q1 = new Question(1, Question.QuestionType.TRUE_FALSE, "Q1?", potentialAnswers1, flaggedAnswers);
+
+        String[] potentialAnswers2 = new String[]{"Yes", "No"};
+        Question q2 = new Question(2, Question.QuestionType.TRUE_FALSE, "Q2?", potentialAnswers2, flaggedAnswers);
+
+        String[] potentialAnswers3 = new String[]{"Yes", "No"};
+        Question q3 = new Question(3, Question.QuestionType.TRUE_FALSE, "Q3?", potentialAnswers3, flaggedAnswers);
         //createUser(u);
 
+        Question[] questions = new Question[]{q1, q2, q3};
+        String[] answers = new String[]{"Yes", "No", "Yes"};
+        String imageLocation = "C://Desktop/NoSymptoms/ThermoImage.png";
+        LogEntry l = new LogEntry(u, questions, answers, imageLocation);
 
+        createLogEntry(l);
     }
 
     private void setUp() {
@@ -59,12 +75,6 @@ public class MainActivity extends AppCompatActivity {
                 .setPersistenceEnabled(true).build(); // enable offline access
         db.setFirestoreSettings(settings);
     }
-
-
-
-
-
-
 
 
     /**
@@ -77,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         CollectionReference usersRefs = db.collection("Users");
         HashMap userMap = oMapper.convertValue(user, HashMap.class);
         System.out.println(userMap.toString());
-        usersRefs.document().set(userMap);
+        usersRefs.document(Integer.toString(user.getIdNumber())).set(userMap);
     }
 
 
@@ -87,6 +97,14 @@ public class MainActivity extends AppCompatActivity {
         HashMap questionMap = oMapper.convertValue(question, HashMap.class);
 
         questionsRefs.document().set(questionMap);
+    }
+
+    protected void createLogEntry(LogEntry logEntry) {
+        ObjectMapper oMapper = new ObjectMapper();
+        CollectionReference entriesRefs = db.collection("Entries");
+        HashMap logMap = oMapper.convertValue(logEntry, HashMap.class);
+
+        entriesRefs.document().set(logMap);
     }
 
     //READ:

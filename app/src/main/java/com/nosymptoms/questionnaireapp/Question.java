@@ -12,6 +12,7 @@ public class Question{
     protected QuestionType questionType;
     protected String questionText;
     private String[] potentialAnswers;
+    private String[] flaggedAnswers;
 
     enum QuestionType {
         MULTIPLE_CHOICE,
@@ -31,11 +32,12 @@ public class Question{
         this.questionText = questionText;
     }
 
-    public Question(int questionID, QuestionType questionType, String questionText, String[] potentialAnswers) {
+    public Question(int questionID, QuestionType questionType, String questionText, String[] potentialAnswers, String[] flaggedAnswers) {
         this.questionID = questionID;
         this.questionType = questionType;
         this.questionText = questionText;
         this.potentialAnswers = potentialAnswers;
+        this.flaggedAnswers = flaggedAnswers;
     }
 
     public Question() {
@@ -43,6 +45,7 @@ public class Question{
         this.questionType = QuestionType.NONE;
         this.questionText = "";
         this.potentialAnswers = null;
+        this.flaggedAnswers = null;
     }
 
     //getters:
@@ -80,7 +83,12 @@ public class Question{
      */
     public String[] getPotentialAnswers (){return potentialAnswers;}
 
-
+    /**
+     * Get the potential answer of the question
+     *
+     * @return flaggedAnswers
+     */
+    public String[] getFlaggedAnswers (){return flaggedAnswers;}
 
     //setters:
     /**
@@ -116,5 +124,12 @@ public class Question{
      * @param potentialAnswers
      */
     public void setPotentialAnswers(String[] potentialAnswers){this.potentialAnswers = potentialAnswers;}
+
+    /**
+     * Sets the potential answer of the selected question object.
+     *
+     * @param flaggedAnswers
+     */
+    public void setFlaggedAnswers(String[] flaggedAnswers){this.flaggedAnswers = flaggedAnswers;}
 
 }

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">No Symptoms</string>
     <string name="hello_database">Hello Database!</string>
+    <string name="longitudeText">Longitude will be here!</string>
+    <string name="latitudeText">Latitude will be here!</string>
 
 </resources>

@@ -41,32 +41,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setUp();
-        //queryUsers("lastName", "Peterson");                                            // Queries The firestore database
+        queryUsers("lastName", "Peterson");                                            // Queries The firestore database
 
         //String[] potentialAnswers = new String[]{"Yes", "No"};
         //Question q = new Question(4, Question.QuestionType.TRUE_FALSE,"Are you down with the sickness?", potentialAnswers);
         //createQuestion(q);
 
         User u = new User(660123, "email@email.com", "fName", "lName", "a;lsdkhjfgbasdlfk");          // Un commenting the 2 lines of code and running will ADD to the firestore database.
-
-        String[] flaggedAnswers = new String[]{"No"};
-
-        String[] potentialAnswers1 = new String[]{"Yes", "No"};
-        Question q1 = new Question(1, Question.QuestionType.TRUE_FALSE, "Q1?", potentialAnswers1, flaggedAnswers);
-
-        String[] potentialAnswers2 = new String[]{"Yes", "No"};
-        Question q2 = new Question(2, Question.QuestionType.TRUE_FALSE, "Q2?", potentialAnswers2, flaggedAnswers);
-
-        String[] potentialAnswers3 = new String[]{"Yes", "No"};
-        Question q3 = new Question(3, Question.QuestionType.TRUE_FALSE, "Q3?", potentialAnswers3, flaggedAnswers);
-        //createUser(u);
-
-        Question[] questions = new Question[]{q1, q2, q3};
-        String[] answers = new String[]{"Yes", "No", "Yes"};
-        String imageLocation = "C://Desktop/NoSymptoms/ThermoImage.png";
-        LogEntry l = new LogEntry(u, questions, answers, imageLocation);
-
-        createLogEntry(l);
+//
+//        String[] flaggedAnswers = new String[]{"No"};
+//
+//        String[] potentialAnswers1 = new String[]{"Yes", "No"};
+//        Question q1 = new Question(1, Question.QuestionType.TRUE_FALSE, "Q1?", potentialAnswers1, flaggedAnswers);
+//
+//        String[] potentialAnswers2 = new String[]{"Yes", "No"};
+//        Question q2 = new Question(2, Question.QuestionType.TRUE_FALSE, "Q2?", potentialAnswers2, flaggedAnswers);
+//
+//        String[] potentialAnswers3 = new String[]{"Yes", "No"};
+//        Question q3 = new Question(3, Question.QuestionType.TRUE_FALSE, "Q3?", potentialAnswers3, flaggedAnswers);
+        createUser(u);
+//
+//        Question[] questions = new Question[]{q1, q2, q3};
+//        String[] answers = new String[]{"Yes", "No", "Yes"};
+//        String imageLocation = "C://Desktop/NoSymptoms/ThermoImage.png";
+//        LogEntry l = new LogEntry(u, questions, answers, imageLocation);
+//
+//        createLogEntry(l);
     }
 
     private void setUp() {

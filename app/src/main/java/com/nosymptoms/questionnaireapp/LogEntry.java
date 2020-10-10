@@ -32,6 +32,19 @@ public class LogEntry {
         }
     }
 
+    public LogEntry(User user, Question[] questions, String[] answers, String imageLocation, FirebaseFirestore db) {
+        this.idNumber = user.getIdNumber();
+        this.timeOfSubmission = Timestamp.now();
+        this.imageLocation = imageLocation;
+        this.logID = Calendar.getInstance().getTime().toString() + "///" + user.idNumber;
+
+        // maps the question with the submitted answer.
+        for (int i = 0; i < Math.min(questions.length, answers.length); i++) {
+            questionAnswerMap.put(questions[i].getQuestionID(), answers[i]);
+        }
+        this.db = db;
+    }
+
     private DocumentReference getUserReference(User user){
         return db.collection("Users").document(Integer.toString(user.getIdNumber()));
     }

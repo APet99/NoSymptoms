@@ -188,36 +188,105 @@ public class UserTest {
 
         Assert.assertNotNull(user.getLastAccessedLocation());
     }
-//
-//
-//
-//
-//
-//
+
 // TODO: 10/7/2020 Finish Implementing User class Setter Tests
 
-//    // Test Setters:
-//    @Test
-//    public void testSetIDNumberNegative() {
-//
-//    }
-//
-//    @Test
-//    public void testSetIDNumberZero() {
-//        assertEquals(4, 2 + 2);
-//    }
-//
-//    @Test
-//    public void testSetIDNumberPositive() {
-//        assertEquals(4, 2 + 2);
-//    }
-//
-//    @Test
-//    public void testSetIDNumberNull() {
-//        assertEquals(4, 2 + 2);
-//    }
-//
-//
+    // Test Setters:
+    @Test
+    public void testSetIDNumberNegative() {
+        User u = createUser();
+        u.setId(-5);
+
+        Assert.assertEquals(-5, u.getIdNumber() );
+    }
+
+    @Test
+    public void testSetIDNumberZero() {
+        User u = createUser();
+        u.setId(0);
+
+        Assert.assertEquals(0, u.getIdNumber() );
+    }
+
+    @Test
+    public void testSetIDNumberPositive() {
+        User u = createUser();
+        u.setId(27);
+
+        Assert.assertEquals(27, u.getIdNumber() );
+    }
 
 
+
+
+
+
+
+    @Test
+    public void testSetEmail() {
+        User u = createUser();
+        u.setEmail("AYO@gmail.com");
+
+        Assert.assertEquals("AYO@gmail.com", u.getEmail() );
+    }
+
+    @Test
+    public void testSetFirstName() {
+        User u = createUser();
+        u.setFirstName("John");
+
+        Assert.assertEquals("John", u.getFirstName() );
+    }
+
+    @Test
+    public void testSetLastName() {
+        User u = createUser();
+        u.setLastName("Smith");
+
+        Assert.assertEquals("Smith", u.getLastName() );
+    }
+
+    @Test
+    public void testSetPassword() {
+        User u = createUser();
+        u.setPassword("123ABC");
+
+        Assert.assertEquals("123ABC", u.getPassword());
+    }
+
+    @Test
+    public void testSetLastAccessedTimestamp() {
+        User u = createUser();
+        Timestamp n = Timestamp.now();
+        u.setLastAccessedTimestamp(n);
+
+        Assert.assertEquals(n, u.getLastAccessedTimestamp() );
+    }
+
+    @Test
+    public void testSetLastAccessedLocation() {
+        User u = createUser();
+        GeoPoint geo = new GeoPoint(12.345, 89.99);
+        u.setLastAccessedLocation(geo);
+
+        Assert.assertEquals(geo, u.getLastAccessedLocation() );
+    }
+
+    @Test
+    public void testConstructor(){
+        User user = new User(123,"123@gmail.com","Alex","Peterson","123ABC");
+        User empty = new User();
+
+        empty.setId(123);
+        empty.setEmail("123@gmail.com");
+        empty.setFirstName("Alex");
+        empty.setLastName("Peterson");
+        empty.setPassword("123ABC");
+
+        Assert.assertEquals(user.idNumber, empty.getIdNumber());
+        Assert.assertEquals(user.getEmail(), empty.getEmail());
+        Assert.assertEquals(user.getFirstName(), empty.getFirstName());
+        Assert.assertEquals(user.getLastName(),empty.getLastName());
+        Assert.assertEquals(user.getPassword(),empty.getPassword());
+    }
 }

@@ -1,7 +1,5 @@
 package com.nosymptoms.questionnaireapp;
 
-import android.content.Context;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //Question q = new Question(4, Question.QuestionType.TRUE_FALSE,"Are you down with the sickness?", potentialAnswers);
         //createQuestion(q);
 
-        User u = new User(660123, "email@email.com", "fName", "lName", "a;lsdkhjfgbasdlfk");          // Un commenting the 2 lines of code and running will ADD to the firestore database.
+        User u = new User(13245, "email2@email.com", "fName2", "lName2", "a;lsdkhjfgbasdlfk");          // Un-commenting the 2 lines of code and running will ADD to the firestore database.
 //
 //        String[] flaggedAnswers = new String[]{"No"};
 //

@@ -82,10 +82,11 @@ public class LocationActivity extends AppCompatActivity {
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(5);
         mLocationRequest.setFastestInterval(0);
-        mLocationRequest.setNumUpdates(100);
+        mLocationRequest.setNumUpdates(200);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+
     }
 
     private LocationCallback mLocationCallback = new LocationCallback() {
@@ -94,6 +95,11 @@ public class LocationActivity extends AppCompatActivity {
             Location mLastLocation = locationResult.getLastLocation();
             latitudeTextView.setText(mLastLocation.getLatitude() + "");
             longitTextView.setText(mLastLocation.getLongitude() + "");
+
+            Location cbuLocation = new Location("");
+            cbuLocation.setLatitude(33.9280);
+            cbuLocation.setLongitude(-117.4255);
+            System.out.println("Is at CBU within" + 550 +"meters: " + isWithinMetersRadius(mLastLocation, cbuLocation, 550) + " "  + mLastLocation.distanceTo(cbuLocation));
         }
     };
 
@@ -136,5 +142,9 @@ public class LocationActivity extends AppCompatActivity {
         if (checkPermissions()) {
             getLastLocation();
         }
+    }
+
+    public static boolean isWithinMetersRadius(Location currentLocation, Location centerPoint, double meters ){
+        return centerPoint.distanceTo(currentLocation) < meters;
     }
 } 

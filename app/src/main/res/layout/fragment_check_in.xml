@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".HomeActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,15 +29,14 @@
         app:layout_constraintVertical_bias="0.5"/>
 
     <Button
-        android:id="@+id/login"
         android:layout_width="192dp"
         android:layout_height="88dp"
         android:layout_gravity="start"
         android:layout_marginBottom="164dp"
-        android:enabled="false"
         android:text="Check in"
         android:textStyle="bold"
         android:textSize="20sp"
+        android:onClick="onCheckInButtonClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

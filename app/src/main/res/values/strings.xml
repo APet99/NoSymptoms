@@ -3,5 +3,11 @@
     <string name="hello_database">Hello Database!</string>
     <string name="longitudeText">Longitude will be here!</string>
     <string name="latitudeText">Latitude will be here!</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="tab_text_1">Check-In</string>
+    <string name="tab_text_2">Log</string>
+    <string name="tab_text_3">Resources</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

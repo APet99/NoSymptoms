@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.2"  />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/email_forgot"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/username_forgot"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -44,10 +44,10 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/email_forgot" />
 
     <Button
-        android:id="@+id/send"
+        android:id="@+id/send_email"
         android:layout_width="170dp"
         android:layout_height="60dp"
         android:layout_gravity="start"
@@ -61,11 +61,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/username_forgot"
         app:layout_constraintVertical_bias="0.3" />
 
     <TextView
-        android:id="@+id/login"
+        android:id="@+id/login_forgot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -73,7 +73,7 @@
         android:text="Sign In"
         android:textSize="15sp"
         android:onClick="onSignInButtonClick"
-        app:layout_constraintTop_toBottomOf="@id/send"
+        app:layout_constraintTop_toBottomOf="@id/send_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

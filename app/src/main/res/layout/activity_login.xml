@@ -60,7 +60,7 @@
         android:textSize="15sp"/>
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/login_button"
         android:layout_width="170dp"
         android:layout_height="60dp"
         android:layout_gravity="start"
@@ -85,7 +85,7 @@
         android:text="Sign Up"
         android:textSize="15sp"
         android:onClick="onSignUpButtonClick"
-        app:layout_constraintTop_toBottomOf="@id/login"
+        app:layout_constraintTop_toBottomOf="@id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

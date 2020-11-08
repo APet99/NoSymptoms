@@ -2,6 +2,7 @@ package com.nosymptoms.questionnaireapp;
 
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.GeoPoint;
+import com.nosymptoms.questionnaireapp.model.User;
 
 import org.junit.Assert;
 import org.junit.Test;

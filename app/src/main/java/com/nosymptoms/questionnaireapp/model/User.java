@@ -1,4 +1,4 @@
-package com.nosymptoms.questionnaireapp;
+package com.nosymptoms.questionnaireapp.model;
 
 import androidx.annotation.Nullable;
 

@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.nosymptoms.questionnaireapp.CheckInFragment;
-import com.nosymptoms.questionnaireapp.LogFragment;
+import com.nosymptoms.questionnaireapp.fragment.CheckInFragment;
+import com.nosymptoms.questionnaireapp.fragment.LogFragment;
 import com.nosymptoms.questionnaireapp.R;
-import com.nosymptoms.questionnaireapp.ResourcesFragment;
+import com.nosymptoms.questionnaireapp.fragment.ResourcesFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

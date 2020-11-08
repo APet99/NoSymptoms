@@ -1,4 +1,4 @@
-package com.nosymptoms.questionnaireapp;
+package com.nosymptoms.questionnaireapp.activity;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +16,10 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
+import com.nosymptoms.questionnaireapp.model.LogEntry;
+import com.nosymptoms.questionnaireapp.Question;
+import com.nosymptoms.questionnaireapp.R;
+import com.nosymptoms.questionnaireapp.model.User;
 
 import java.util.HashMap;
 

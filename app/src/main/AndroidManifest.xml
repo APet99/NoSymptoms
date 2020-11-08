@@ -14,14 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".HomeActivity"
+            android:name=".activity.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".QuestionnaireActivity" />
-        <activity android:name=".ForgotActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.QuestionnaireActivity" />
+        <activity android:name=".activity.ForgotActivity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

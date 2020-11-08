@@ -1,4 +1,4 @@
-package com.nosymptoms.questionnaireapp;
+package com.nosymptoms.questionnaireapp.activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,11 +9,16 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
+
+import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.tabs.TabLayout;
+import android.view.View;
+
+import com.nosymptoms.questionnaireapp.R;
 import com.nosymptoms.questionnaireapp.ui.main.SectionsPagerAdapter;
 
 import java.util.HashMap;

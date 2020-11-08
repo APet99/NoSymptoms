@@ -1,4 +1,4 @@
-package com.nosymptoms.questionnaireapp;
+package com.nosymptoms.questionnaireapp.activity;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -18,6 +18,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.nosymptoms.questionnaireapp.R;
+
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;

@@ -1,9 +1,8 @@
-package com.nosymptoms.questionnaireapp;
+package com.nosymptoms.questionnaireapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.nosymptoms.questionnaireapp.R;
+import com.nosymptoms.questionnaireapp.model.User;
 
 import java.util.Objects;
 

@@ -1,8 +1,9 @@
-package com.nosymptoms.questionnaireapp;
+package com.nosymptoms.questionnaireapp.model;
 
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.nosymptoms.questionnaireapp.Question;
 
 import java.util.Calendar;
 import java.util.HashMap;

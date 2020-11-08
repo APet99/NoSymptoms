@@ -1,4 +1,4 @@
-package com.nosymptoms.questionnaireapp;
+package com.nosymptoms.questionnaireapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.nosymptoms.questionnaireapp.R;
 
 public class QuestionnaireActivity extends AppCompatActivity {
 

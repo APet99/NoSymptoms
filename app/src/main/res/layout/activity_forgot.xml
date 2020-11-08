@@ -19,32 +19,19 @@
         app:layout_constraintVertical_bias="0.2"  />
 
     <EditText
-        android:id="@+id/email_forgot"
+        android:id="@+id/id_forgot"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="250dp"
         android:layout_marginEnd="24dp"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
+        android:hint="CBU ID Number"
+        android:inputType="number|text"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/username_forgot"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:hint="User"
-        android:inputType="textEmailAddress"
-        android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_forgot" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="266dp" />
 
     <Button
         android:id="@+id/send_email"
@@ -56,25 +43,58 @@
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="64dp"
         android:enabled="false"
-        android:text="Send E-mail"
         android:onClick="onSendButtonClick"
+        android:text="Send E-mail"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_forgot"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintTop_toBottomOf="@+id/id_forgot"
+        app:layout_constraintVertical_bias="0.575" />
 
     <TextView
         android:id="@+id/login_forgot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="12dp"
+        android:onClick="onSignInButtonClick"
         android:text="Sign In"
         android:textSize="15sp"
-        android:onClick="onSignInButtonClick"
-        app:layout_constraintTop_toBottomOf="@id/send_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/send_email" />
+
+    <TextView
+        android:id="@+id/register_forgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="12dp"
+        android:onClick="onRegisterButtonClick"
+        android:text="Register"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintStart_toEndOf="@+id/login_forgot"
+        app:layout_constraintTop_toBottomOf="@+id/send_email" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="317dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="354dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

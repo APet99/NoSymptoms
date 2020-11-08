@@ -21,21 +21,21 @@
         app:layout_constraintVertical_bias="0.2"  />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/cbu_id_num"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="250dp"
         android:layout_marginEnd="24dp"
-        android:hint="User"
-        android:inputType="textEmailAddress"
+        android:hint="CBU ID #"
+        android:inputType="number|text"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/password_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -47,7 +47,7 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/cbu_id_num" />
 
     <TextView
         android:id="@+id/forgot"
@@ -55,8 +55,8 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:onClick="onForgotButtonClick"
-        app:layout_constraintTop_toBottomOf="@id/password"
-        app:layout_constraintLeft_toLeftOf="@id/password"
+        app:layout_constraintTop_toBottomOf="@id/password_login"
+        app:layout_constraintLeft_toLeftOf="@id/password_login"
         android:text="Forgot Password?"
         android:textSize="15sp"/>
 
@@ -74,7 +74,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/password_login"
         app:layout_constraintVertical_bias="0.2" />
 
     <TextView

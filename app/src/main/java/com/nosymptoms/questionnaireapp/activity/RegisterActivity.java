@@ -33,6 +33,8 @@ public class RegisterActivity extends AppCompatActivity {
     public EditText lastName;
     public EditText password;
     public EditText confirmPass;
+    public EditText securityQuestion;
+    public EditText securityAnswer;
 
     @Inject
     private UserDao userDao;
@@ -50,6 +52,9 @@ public class RegisterActivity extends AppCompatActivity {
         lastName = (EditText) findViewById(R.id.last_name_reg);
         password = (EditText) findViewById(R.id.password_register);
         confirmPass = (EditText) findViewById(R.id.confirm);
+        securityQuestion = (EditText) findViewById(R.id.question);
+        securityAnswer = (EditText) findViewById(R.id.answer);
+
         register_button = (Button) findViewById(R.id.register_button);
 
         sign_in_text = (TextView) findViewById(R.id.sign_in_text);
@@ -69,10 +74,12 @@ public class RegisterActivity extends AppCompatActivity {
         String userLast = lastName.getText().toString().trim();
         String userPass = password.getText().toString().trim();
         String userPassConfirm = confirmPass.getText().toString().trim();
+        String userQuestion = securityQuestion.getText().toString().trim();
+        String userAnswer = securityAnswer.getText().toString().trim();
         String id = idNumber.getText().toString().trim();
 
         //check if values are valid
-        boolean valid = checkUserValues(id, userEmail, userFirst, userLast, userPass, userPassConfirm);
+        boolean valid = checkUserValues(id, userEmail, userFirst, userLast, userPass, userPassConfirm, userQuestion, userAnswer);
 
         //if valid then push to database as a new user
         if(valid) {
@@ -81,6 +88,8 @@ public class RegisterActivity extends AppCompatActivity {
             newUser.setFirstName(userFirst);
             newUser.setLastName(userLast);
             newUser.setPassword(userPass);
+            newUser.setSecurityQuestion(userQuestion);
+            newUser.setSecurityAnswer(userAnswer);
             newUser.setId(Integer.parseInt(id));
 
             userDao.createUser(newUser);
@@ -92,20 +101,22 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     //check to make sure that the users values are correct
-    private boolean checkUserValues(String id, String userEmail, String userFirst, String userLast, String userPass, String confirmPass){
+    private boolean checkUserValues(String id, String userEmail, String userFirst, String userLast, String userPass, String confirmPass, String userQuestion, String userAnswer) {
         boolean valid = false;
         if (TextUtils.isEmpty(userEmail) || (!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches())) {
             Toast.makeText(getApplicationContext(), "Enter a valid email address!", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(userPass)) {
             Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-        }else if (TextUtils.isEmpty(id) && id.matches("\\d+5")) {
-                Toast.makeText(getApplicationContext(), "Enter CBU ID Number!", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(userFirst) || (TextUtils.isEmpty(userLast))){
+        } else if (TextUtils.isEmpty(id) && id.matches("\\d+5")) {
+            Toast.makeText(getApplicationContext(), "Enter CBU ID Number!", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(userFirst) || (TextUtils.isEmpty(userLast))) {
             Toast.makeText(getApplicationContext(), "Enter your first and last name!", Toast.LENGTH_SHORT).show();
-        } else if (userPass.length() < 10 ) {
+        } else if (userPass.length() < 10) {
             Toast.makeText(getApplicationContext(), "Password too short, enter minimum 10 characters!", Toast.LENGTH_SHORT).show();
-        } else if (Objects.equals(userPass, confirmPass)){
+        } else if (Objects.equals(userPass, confirmPass)) {
             Toast.makeText(getApplicationContext(), "Passwords do not match!!", Toast.LENGTH_SHORT).show();
+        } else if ((TextUtils.isEmpty(userAnswer) || (TextUtils.isEmpty(userQuestion)))){
+            Toast.makeText(getApplicationContext(), "Please enter a value for the security question and answer.", Toast.LENGTH_SHORT).show();
         } else if (userDao.getUserById(Integer.parseInt(id)) != null) {
             Toast.makeText(getApplicationContext(), String.format("User with id: %s already exists!", id), Toast.LENGTH_SHORT).show();
         } else {

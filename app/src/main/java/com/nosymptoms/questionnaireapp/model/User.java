@@ -18,6 +18,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String password;
+    private String securityQuestion;
+    private String securityAnswer;
     private final Timestamp creationTimestamp;
     private Timestamp lastAccessedTimestamp;
     private GeoPoint lastAccessedLocation;
@@ -27,7 +29,7 @@ public class User {
      * Constructor(s):
      */
     public User(int idNumber, String email, String firstName, String lastName, String password,
-                Timestamp creationTimestamp, Timestamp lastAccessedTimestamp,
+                String question, String answer, Timestamp creationTimestamp, Timestamp lastAccessedTimestamp,
                 GeoPoint lastAccessedLocation) {
 
         this.idNumber = idNumber;
@@ -35,17 +37,21 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+        this.securityQuestion = question;
+        this.securityAnswer = answer;
         this.creationTimestamp = creationTimestamp;
         this.lastAccessedTimestamp = lastAccessedTimestamp;
         this.lastAccessedLocation = lastAccessedLocation;
     }
 
-    public User(int idNumber, String email, String firstName, String lastName, String password) {
+    public User(int idNumber, String email, String firstName, String lastName, String password, String question, String answer ) {
         this.idNumber = idNumber;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+        this.securityQuestion = question;
+        this.securityAnswer = answer;
         this.creationTimestamp = com.google.firebase.Timestamp.now();
         this.lastAccessedTimestamp = Timestamp.now();
         this.lastAccessedLocation = new GeoPoint(0.000001, 0.000001);
@@ -57,6 +63,8 @@ public class User {
         this.firstName = "";
         this.lastName = "";
         this.password = "";
+        this.securityQuestion = "";
+        this.securityAnswer = "";
         this.creationTimestamp = com.google.firebase.Timestamp.now();
         this.lastAccessedTimestamp = Timestamp.now();
         this.lastAccessedLocation = new GeoPoint(0.000001, 0.000001);
@@ -64,6 +72,17 @@ public class User {
 
 
     //getters:
+
+
+    public String getSecurityQuestion() {
+        return securityQuestion;
+    }
+
+
+    public String getSecurityAnswer() {
+        return securityAnswer;
+    }
+
 
     /**
      * gets the value of idNumber
@@ -139,6 +158,14 @@ public class User {
 
 
     //setters:
+
+    public void setSecurityAnswer(String securityAnswer) {
+        this.securityAnswer = securityAnswer;
+    }
+
+    public void setSecurityQuestion(String securityQuestion) {
+        this.securityQuestion = securityQuestion;
+    }
 
     /**
      * Sets the value of idNumbers

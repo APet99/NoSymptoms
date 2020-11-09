@@ -18,9 +18,12 @@ import javax.inject.Inject;
 
 public class ForgotActivity extends AppCompatActivity {
 
-    EditText user_id_forgot;
-    Button send_email;
-    TextView login_forgot;
+    public EditText user_id_forgot;
+    public TextView securityQuestion;
+    public EditText securityAnswer;
+    public Button change_pass;
+    public Button continue_button;
+    public TextView login_forgot;
 
     @Inject
     UserDao userDAO;
@@ -31,31 +34,65 @@ public class ForgotActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forgot);
 
         user_id_forgot = (EditText)findViewById(R.id.id_forgot);
-        send_email = (Button)findViewById(R.id.send_email);
+        change_pass = (Button)findViewById(R.id.enter_button);
         login_forgot = (TextView)findViewById(R.id.login_forgot);
+        securityAnswer = (EditText) findViewById(R.id.security_answer);
+        securityQuestion = (TextView) findViewById(R.id.security_question);
+        continue_button = (Button) findViewById(R.id.continue_button);
+
     }
 
-    public void onSendButtonClick(View view) {
+    public void onEnterButtonClick(View view) {
         //TODO: Add recovery procedure
+        String user_id = user_id_forgot.toString();
+        //check if the user is valid
+        boolean isUserValid = isUserInDB(user_id);
 
-        boolean isUserValid = isUserInDB(user_id_forgot.toString());
-
-        if(isUserValid){
-            //get security question
-//            String securityQuestion = userDAO.getUserById(Integer.parseInt(user_id_forgot.toString())).getSecurityQuestion();
-            //display security question in TextView and text for response
-
-
-            //if the text matches the user's response in DB
-            //then let user access the Change Password Activity
-
-            Intent intent = new Intent(this, LoginActivity.class); //send to Change Pass Activity
-            startActivity(intent);
-
-            //change user's password in the database in Change Pass Activity
-            //send to login activity
+        // if user is valid, display question and answer
+        if (isUserValid) {
+            displayQuestionAndAnswer();
         }
+    }
 
+    public void onContinueButtonClick (View View) {
+        String user_id = user_id_forgot.toString();
+        String user_answer = securityAnswer.toString();
+
+        //if the text matches the user's response in DB
+        boolean correctAnswer = isSecurityAnswerCorrect(user_id, user_answer);
+        //then let user access the Change Password Activity
+
+//            Intent intent = new Intent(this, LoginActivity.class); //send to Change Pass Activity
+//            startActivity(intent);
+
+        //change user's password in the database in Change Pass Activity
+        //send to login activity
+    }
+
+
+    private void displayQuestionAndAnswer(){
+        securityAnswer.setVisibility(View.VISIBLE);
+        //display the continue button
+        continue_button.setVisibility(View.VISIBLE);
+
+        //get the user question and set the text to the user question
+        String user_question = userDAO.getUserById(Integer.parseInt(user_id_forgot.toString())).getSecurityQuestion();
+        securityQuestion.setText(user_question);
+
+        //display question
+        securityQuestion.setVisibility(View.VISIBLE);
+
+    }
+
+    private boolean isSecurityAnswerCorrect(String userID, String answerInput){
+        //checks to make sure that the answer entered is correct
+        User userToCheck = userDAO.getUserById(Integer.parseInt(userID));
+
+        if (!(userToCheck.getSecurityAnswer().equals(answerInput))){
+            Toast.makeText(getApplicationContext(), "Answer does not match. Please try again.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     private boolean isUserInDB (String userID){

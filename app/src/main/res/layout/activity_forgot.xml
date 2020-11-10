@@ -7,7 +7,7 @@
     tools:context=".activity.ForgotActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/forgot_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -32,49 +32,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/forgot_title"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/enter_button"
         android:layout_width="170dp"
         android:layout_height="60dp"
-        android:layout_gravity="start"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="120dp"
         android:layout_marginBottom="64dp"
-        android:enabled="false"
         android:onClick="onEnterButtonClick"
         android:text="Enter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/security_answer" />
-
-    <TextView
-        android:id="@+id/login_forgot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="12dp"
-        android:onClick="onSignInButtonClick"
-        android:text="Sign In"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/enter_button" />
-
-    <TextView
-        android:id="@+id/register_forgot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="12dp"
-        android:onClick="onRegisterButtonClick"
-        android:text="Register"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
-        app:layout_constraintStart_toEndOf="@+id/login_forgot"
-        app:layout_constraintTop_toBottomOf="@+id/enter_button" />
+        app:layout_constraintTop_toBottomOf="@+id/security_answer"
+        app:layout_constraintVertical_bias="0.278" />
 
     <TextView
         android:id="@+id/security_question"
@@ -109,12 +81,36 @@
         android:id="@+id/continue_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
         android:onClick="onContinueButtonClick"
         android:text="Continue"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/enter_button"
-        app:layout_constraintTop_toBottomOf="@+id/security_answer" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enter_button" />
+
+    <TextView
+        android:id="@+id/login_forgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="12dp"
+        android:onClick="onSignInButtonClick"
+        android:text="Sign In"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@id/enter_button"
+        app:layout_constraintTop_toBottomOf="@id/continue_button" />
+
+    <TextView
+        android:id="@+id/register_forgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="12dp"
+        android:onClick="onRegisterButtonClick"
+        android:text="Register"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@id/enter_button"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintTop_toBottomOf="@+id/continue_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

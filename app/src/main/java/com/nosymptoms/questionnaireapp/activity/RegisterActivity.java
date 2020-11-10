@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
     public EditText securityAnswer;
 
     @Inject
-    private UserDao userDao;
+    public UserDao userDao; //Made this public because it wasn't compiling otherwise
 
 
     @Override

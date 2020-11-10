@@ -45,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onResourceButtonClick(View view) {
+        //The map is filled on the first time a resource is clicked
         if (linkMap == null) {
             linkMap = new HashMap<>();
             ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.resource_fragment);

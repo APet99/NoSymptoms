@@ -57,6 +57,18 @@ public class User {
         this.lastAccessedLocation = new GeoPoint(0.000001, 0.000001);
     }
 
+    //Made this constructor for the User u in MainActivity
+    public User(int idNumber, String email, String firstName, String lastName, String password) {
+        this.idNumber = idNumber;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.creationTimestamp = com.google.firebase.Timestamp.now();
+        this.lastAccessedTimestamp = Timestamp.now();
+        this.lastAccessedLocation = new GeoPoint(0.000001, 0.000001);
+    }
+
     public User() {
         this.idNumber = -1;
         this.email = "";

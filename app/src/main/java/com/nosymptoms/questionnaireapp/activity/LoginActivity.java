@@ -16,15 +16,18 @@ import com.nosymptoms.questionnaireapp.model.User;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class LoginActivity extends AppCompatActivity {
 
-    EditText cbuIDNum;
-    EditText password;
-    Button login;
+    public EditText cbuIDNum;
+    public EditText password;
+    public Button login;
     TextView welcome;
 
     @Inject
-    UserDao userDAO;
+    public UserDao userDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginButtonClick(View view) {
         //check if user is valid
-        boolean isValid = isUserInDB(cbuIDNum.toString(), password.toString());
+        boolean isValid = isUserInDB(cbuIDNum.getText().toString(), password.getText().toString());
 
         if(isValid){
             String message = "Welcome " + userDAO.getUserById(Integer.parseInt(cbuIDNum.toString())).getFirstName() + "!";

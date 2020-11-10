@@ -19,6 +19,7 @@ public class UserTest {
 
     private User createUser() {
         return new User(123456, "testEmail@email.com", "myFName", "myLName", "mYpAsSwOrD HaSh123!@#",
+                "who is your mom", "your mom",
                 Timestamp.now(), Timestamp.now(),
                 new GeoPoint(0.00001, 0.000001));
     }
@@ -81,7 +82,8 @@ public class UserTest {
     @Test
     public void testGetFirstNameEmpty() {
         User user = new User(123456, "testEmail@email.com", "", "myLName", "mYpAsSwOrD HaSh123!@#",
-                Timestamp.now(), Timestamp.now(),
+                "who is your mom", "your mom",
+                 Timestamp.now(), Timestamp.now(),
                 new GeoPoint(0.00001, 0.000001));
 
 
@@ -91,6 +93,7 @@ public class UserTest {
     @Test
     public void testGetFirstNameNull() {
         User user = new User(123456, "testEmail@email.com", null, "myLName", "mYpAsSwOrD HaSh123!@#",
+                "who is your mom", "your mom",
                 Timestamp.now(), Timestamp.now(),
                 new GeoPoint(0.00001, 0.000001));
 
@@ -112,6 +115,7 @@ public class UserTest {
     @Test
     public void testGetLastNameEmpty() {
         User user = new User(123456, "testEmail@email.com", "", "", "mYpAsSwOrD HaSh123!@#",
+                "who is your mom", "your mom",
                 Timestamp.now(), Timestamp.now(),
                 new GeoPoint(0.00001, 0.000001));
 
@@ -122,6 +126,7 @@ public class UserTest {
     @Test
     public void testGetLastNameNull() {
         User user = new User(123456, "testEmail@email.com", "myFName", null, "mYpAsSwOrD HaSh123!@#",
+                "who is your mom", "your mom",
                 Timestamp.now(), Timestamp.now(),
                 new GeoPoint(0.00001, 0.000001));
 
@@ -136,6 +141,7 @@ public class UserTest {
     @Test
     public void testGetPasswordNull() {
         User user = new User(123456, "testEmail@email.com", "myFName", "myLName", null,
+                "who is your mom", "your mom",
                 Timestamp.now(), Timestamp.now(),
                 new GeoPoint(0.00001, 0.000001));
 
@@ -145,6 +151,7 @@ public class UserTest {
     @Test
     public void testGetPasswordEmpty() {
         User user = new User(123456, "testEmail@email.com", "myFName", "myLName", "",
+                "who is your mom", "your mom",
                 Timestamp.now(), Timestamp.now(),
                 new GeoPoint(0.00001, 0.000001));
 
@@ -217,12 +224,6 @@ public class UserTest {
         Assert.assertEquals(27, u.getIdNumber() );
     }
 
-
-
-
-
-
-
     @Test
     public void testSetEmail() {
         User u = createUser();
@@ -275,7 +276,7 @@ public class UserTest {
 
     @Test
     public void testConstructor(){
-        User user = new User(123,"123@gmail.com","Alex","Peterson","123ABC");
+        User user = new User(123,"123@gmail.com","Alex","Peterson","123ABC","who is your mom", "your mom");
         User empty = new User();
 
         empty.setId(123);

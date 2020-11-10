@@ -21,6 +21,9 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class RegisterActivity extends AppCompatActivity {
 
     public Button register_button;
@@ -58,16 +61,9 @@ public class RegisterActivity extends AppCompatActivity {
         register_button = (Button) findViewById(R.id.register_button);
 
         sign_in_text = (TextView) findViewById(R.id.sign_in_text);
-
-        register_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onRegisterButtonClick();
-            }
-        });
     }
 
-    private void onRegisterButtonClick() {
+    public void onRegisterButtonClick(View view) {
         //set everything to a string value
         String userEmail = email.getText().toString().trim();
         String userFirst = firstName.getText().toString().trim();

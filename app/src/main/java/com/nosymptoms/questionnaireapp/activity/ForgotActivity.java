@@ -26,7 +26,7 @@ public class ForgotActivity extends AppCompatActivity {
     public TextView login_forgot;
 
     @Inject
-    UserDao userDAO;
+    public UserDao userDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

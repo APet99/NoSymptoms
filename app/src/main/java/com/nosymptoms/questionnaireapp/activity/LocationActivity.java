@@ -5,11 +5,19 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Looper;
 import android.provider.Settings;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
@@ -24,6 +32,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;
 import android.content.Intent;
+
+import java.util.Random;
+
 /**
  * Created By: Alex Peterson        AlexJoseph.Peterson@CalBaptist.edu
  * Created On: October 9, 2020
@@ -38,7 +49,8 @@ public class LocationActivity extends AppCompatActivity {
     protected FusedLocationProviderClient mFusedLocationClient;
     protected TextView latitudeTextView, longitTextView;
     int PERMISSION_ID = 44;
-
+    public static String id = "no_symptoms_channel_id";
+    NotificationManager mNotificationManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +60,32 @@ public class LocationActivity extends AppCompatActivity {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         requestNewLocationData();
+        createNotificationChannel();
+        notifyByLocation();
+
     }
+
+    private void createNotificationChannel() {
+        mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        CharSequence name = "NSChannel";
+
+        String description = "NSDescription";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel mChannel = new NotificationChannel(id, name, importance);
+
+        mChannel.setDescription(description);
+        mChannel.enableLights(true);
+
+        mChannel.setLightColor(Color.RED);
+        mChannel.enableVibration(true);
+        mChannel.setShowBadge(true);
+        mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+        mNotificationManager.createNotificationChannel(mChannel);
+    }
+
+
 
     @SuppressLint("MissingPermission")
     private void getLastLocation() {
@@ -82,9 +119,9 @@ public class LocationActivity extends AppCompatActivity {
     private void requestNewLocationData() {
         LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(5);
+        mLocationRequest.setInterval(20 * 1000);
         mLocationRequest.setFastestInterval(0);
-        mLocationRequest.setNumUpdates(200);
+        mLocationRequest.setNumUpdates(Integer.MAX_VALUE);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
@@ -146,7 +183,24 @@ public class LocationActivity extends AppCompatActivity {
         }
     }
 
-    public static boolean isWithinMetersRadius(Location currentLocation, Location centerPoint, double meters ){
+    public boolean isWithinMetersRadius(Location currentLocation, Location centerPoint, double meters){
+
+        notifyByLocation();
         return centerPoint.distanceTo(currentLocation) < meters;
+
     }
-} 
+
+    public void notifyByLocation() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle("Fill Out Your Questionnaire!")
+                .setContentText("To be on campus you must be cleared first.")
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+        Random r = new Random();
+
+        notificationManager.notify(r.nextInt(1000) + 1, builder.build());
+    }
+}

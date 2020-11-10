@@ -10,29 +10,55 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nosymptoms.questionnaireapp.R;
+import com.nosymptoms.questionnaireapp.dao.UserDao;
+import com.nosymptoms.questionnaireapp.model.User;
+
+import javax.inject.Inject;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText username;
+    EditText cbuIDNum;
     EditText password;
     Button login;
 
+    @Inject
+    UserDao userDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        username = (EditText)findViewById(R.id.username);
-        password = (EditText)findViewById(R.id.password);
+        cbuIDNum = (EditText)findViewById(R.id.cbu_id_num);
+        password = (EditText)findViewById(R.id.password_login);
         login = (Button)findViewById(R.id.login_button);
     }
 
     public void onLoginButtonClick(View view) {
-        //TODO: Add login procedure
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
+        //check if user is valid
+        boolean isValid = isUserInDB(cbuIDNum.toString(), password.toString());
 
+        if(isValid){
+            //TODO: Add start session information; change "User" text on homepage to user
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+        }
+
+
+    }
+
+    private boolean isUserInDB (String userID, String userPass){
+        User userToCheck = userDAO.getUserById(Integer.parseInt(userID));
+
+        //check if the username and password match a user in the database
+        if((userToCheck != null) || (!userToCheck.getPassword().equals(userPass))){
+            Toast.makeText(getApplicationContext(), "Username or password is not valid", Toast.LENGTH_SHORT).show();
+            failedLogin();
+            return false;
+        }
+
+        successfulLogin();
+        return true;
     }
 
     public void successfulLogin(){

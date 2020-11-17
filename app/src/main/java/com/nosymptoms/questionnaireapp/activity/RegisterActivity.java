@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.common.util.NumberUtils;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.nosymptoms.questionnaireapp.R;
 import com.nosymptoms.questionnaireapp.dao.UserDao;
 import com.nosymptoms.questionnaireapp.model.User;
@@ -79,42 +81,50 @@ public class RegisterActivity extends AppCompatActivity {
 
         //if valid then push to database as a new user
         if(valid) {
-            User newUser = new User();
-            newUser.setEmail(userEmail);
-            newUser.setFirstName(userFirst);
-            newUser.setLastName(userLast);
-            newUser.setPassword(userPass);
-            newUser.setSecurityQuestion(userQuestion);
-            newUser.setSecurityAnswer(userAnswer);
-            newUser.setId(Integer.parseInt(id));
+            userDao.getUserById(Integer.parseInt(id)).get().addOnSuccessListener(documentSnapshot -> {
+                //convert doc snapshot to object pulled from DB
+                User user = documentSnapshot.toObject(User.class);
+                if (user != null) {
+                    Toast.makeText(getApplicationContext(), String.format("User with id: %s already exists!", id), Toast.LENGTH_SHORT).show();
+                } else {
+                    User newUser = new User();
+                    newUser.setEmail(userEmail);
+                    newUser.setFirstName(userFirst);
+                    newUser.setLastName(userLast);
+                    newUser.setPassword(userPass);
+                    newUser.setSecurityQuestion(userQuestion);
+                    newUser.setSecurityAnswer(userAnswer);
+                    newUser.setId(Integer.parseInt(id));
 
-            userDao.createUser(newUser);
+                    userDao.createUser(newUser);
 
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
     }
 
 
     //check to make sure that the users values are correct
-    private boolean checkUserValues(String id, String userEmail, String userFirst, String userLast, String userPass, String confirmPass, String userQuestion, String userAnswer) {
+    private boolean checkUserValues(String id, String userEmail, String userFirst,
+                                    String userLast, String userPass, String confirmPass,
+                                    String userQuestion, String userAnswer) {
         boolean valid = false;
         if (TextUtils.isEmpty(userEmail) || (!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches())) {
             Toast.makeText(getApplicationContext(), "Enter a valid email address!", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(userPass)) {
             Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(id) && id.matches("\\d+5")) {
+        } else if (TextUtils.isEmpty(id) && !id.matches("\\d+6")) {
             Toast.makeText(getApplicationContext(), "Enter CBU ID Number!", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(userFirst) || (TextUtils.isEmpty(userLast))) {
             Toast.makeText(getApplicationContext(), "Enter your first and last name!", Toast.LENGTH_SHORT).show();
         } else if (userPass.length() < 10) {
             Toast.makeText(getApplicationContext(), "Password too short, enter minimum 10 characters!", Toast.LENGTH_SHORT).show();
-        } else if (Objects.equals(userPass, confirmPass)) {
+        } else if (!userPass.equals(confirmPass)) {
             Toast.makeText(getApplicationContext(), "Passwords do not match!!", Toast.LENGTH_SHORT).show();
         } else if ((TextUtils.isEmpty(userAnswer) || (TextUtils.isEmpty(userQuestion)))){
             Toast.makeText(getApplicationContext(), "Please enter a value for the security question and answer.", Toast.LENGTH_SHORT).show();
-        } else if (userDao.getUserById(Integer.parseInt(id)) != null) {
-            Toast.makeText(getApplicationContext(), String.format("User with id: %s already exists!", id), Toast.LENGTH_SHORT).show();
         } else {
             valid = true;
         }

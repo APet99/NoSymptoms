@@ -7,6 +7,9 @@ import com.nosymptoms.questionnaireapp.model.User;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import static org.junit.Assert.*;
 
 /**
@@ -260,7 +263,7 @@ public class UserTest {
     public void testSetLastAccessedTimestamp() {
         User u = createUser();
         Timestamp n = Timestamp.now();
-        u.setLastAccessedTimestamp(n);
+        u.setLastAccessedTimestamp(Collections.singletonMap("seconds", n.getSeconds()));
 
         Assert.assertEquals(n, u.getLastAccessedTimestamp() );
     }

@@ -40,17 +40,18 @@ public class FirebaseUserDao implements UserDao {
     }
 
     @Override
-    public User getUserById(int id) {
-        DocumentReference docRef = db.collection("cities").document("BJ");
-        DocumentSnapshot documentSnapshot = docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                }
-            }
-        }).getResult();
+    public void updateUser(User user){
+        ObjectMapper oMapper = new ObjectMapper();
+        CollectionReference usersRefs = db.collection("Users");
+        HashMap userMap = oMapper.convertValue(user, HashMap.class);
+        System.out.println(userMap.toString());
+        usersRefs.document(Integer.toString(user.getIdNumber())).set(userMap);
+    }
 
-        return documentSnapshot.toObject(User.class);
+    @Override
+    public DocumentReference getUserById(int id) {
+        DocumentReference docRef = db.collection("Users").document("" + id);
+
+        return docRef;
     }
 }

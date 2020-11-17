@@ -5,6 +5,10 @@ import androidx.annotation.Nullable;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.GeoPoint;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * User of the No Symptoms Questionnaire App.
@@ -20,7 +24,7 @@ public class User {
     private String password;
     private String securityQuestion;
     private String securityAnswer;
-    private final Timestamp creationTimestamp;
+    private Timestamp creationTimestamp;
     private Timestamp lastAccessedTimestamp;
     private GeoPoint lastAccessedLocation;
 
@@ -229,8 +233,17 @@ public class User {
      *
      * @param lastAccessedTimestamp The timestamp of when the user was last active.
      */
-    public void setLastAccessedTimestamp(Timestamp lastAccessedTimestamp) {
-        this.lastAccessedTimestamp = lastAccessedTimestamp;
+    public void setLastAccessedTimestamp(HashMap<String, Long> lastAccessedTimestamp) {
+        this.lastAccessedTimestamp = new Timestamp(new Date(lastAccessedTimestamp.get("seconds") * 1000));
+    }
+
+    /**
+     * Sets the value of creationTimestamp
+     *
+     * @param creationTimestamp The timestamp of when the user was last active.
+     */
+    public void setCreationTimestamp(HashMap<String, Integer> creationTimestamp) {
+        this.creationTimestamp = new Timestamp(new Date(creationTimestamp.get("seconds") * 1000));
     }
 
     /**
@@ -238,8 +251,10 @@ public class User {
      *
      * @param lastAccessedLocation The coordinates of where the user last used the service.
      */
-    public void setLastAccessedLocation(GeoPoint lastAccessedLocation) {
-        this.lastAccessedLocation = lastAccessedLocation;
+    public void setLastAccessedLocation(HashMap<String, Double> geoPoint) {
+        if(geoPoint.containsKey("latitude") && geoPoint.containsKey("longitude")) {
+            this.lastAccessedLocation = new GeoPoint(geoPoint.get("latitude"), geoPoint.get("longitude"));
+        }
     }
 
 

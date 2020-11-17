@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.nosymptoms.questionnaireapp.R;
 import com.nosymptoms.questionnaireapp.dao.UserDao;
 import com.nosymptoms.questionnaireapp.model.User;
@@ -28,17 +30,20 @@ public class ForgotActivity extends AppCompatActivity {
     @Inject
     public UserDao userDAO;
 
+    private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot);
 
-        user_id_forgot = (EditText)findViewById(R.id.id_forgot);
-        change_pass = (Button)findViewById(R.id.enter_button);
-        login_forgot = (TextView)findViewById(R.id.login_forgot);
-        securityAnswer = (EditText) findViewById(R.id.security_answer);
-        securityQuestion = (TextView) findViewById(R.id.security_question);
-        continue_button = (Button) findViewById(R.id.continue_button);
+        user_id_forgot = findViewById(R.id.id_forgot);
+        change_pass = findViewById(R.id.enter_button);
+        login_forgot = findViewById(R.id.login_forgot);
+        securityAnswer =  findViewById(R.id.security_answer);
+        securityQuestion =  findViewById(R.id.security_question);
+        continue_button = findViewById(R.id.continue_button);
+
 
     }
 
@@ -46,12 +51,19 @@ public class ForgotActivity extends AppCompatActivity {
         //TODO: Add recovery procedure
         String user_id = user_id_forgot.toString();
         //check if the user is valid
-        boolean isUserValid = isUserInDB(user_id);
 
-        // if user is valid, display question and answer
-        if (isUserValid) {
-            displayQuestionAndAnswer();
-        }
+        userDAO.getUserById(Integer.parseInt(user_id)).get().addOnSuccessListener(
+                documentSnapshot -> {
+                    user = documentSnapshot.toObject(User.class);
+                    boolean isUserValid = isUserInDB(user);
+
+                    // if user is valid, display question and answer
+                    if (isUserValid) {
+                        displayQuestionAndAnswer(user);
+                    }
+                }
+        );
+
     }
 
     public void onContinueButtonClick (View View) {
@@ -59,24 +71,24 @@ public class ForgotActivity extends AppCompatActivity {
         String user_answer = securityAnswer.toString();
 
         //if the text matches the user's response in DB
-        boolean correctAnswer = isSecurityAnswerCorrect(user_id, user_answer);
+        boolean correctAnswer = isSecurityAnswerCorrect(user, user_answer);
         //then let user access the Change Password Activity
+        if(correctAnswer){
+            //send to Change Pass Activity
+            Intent intent = new Intent(this, ChangePasswordActivity.class);
+            startActivity(intent);
+        }
 
-//            Intent intent = new Intent(this, LoginActivity.class); //send to Change Pass Activity
-//            startActivity(intent);
-
-        //change user's password in the database in Change Pass Activity
-        //send to login activity
     }
 
 
-    private void displayQuestionAndAnswer(){
+    private void displayQuestionAndAnswer(User user){
         securityAnswer.setVisibility(View.VISIBLE);
         //display the continue button
         continue_button.setVisibility(View.VISIBLE);
 
         //get the user question and set the text to the user question
-        String user_question = userDAO.getUserById(Integer.parseInt(user_id_forgot.toString())).getSecurityQuestion();
+        String user_question = user.getSecurityQuestion();
         securityQuestion.setText(user_question);
 
         //display question
@@ -84,10 +96,7 @@ public class ForgotActivity extends AppCompatActivity {
 
     }
 
-    private boolean isSecurityAnswerCorrect(String userID, String answerInput){
-        //checks to make sure that the answer entered is correct
-        User userToCheck = userDAO.getUserById(Integer.parseInt(userID));
-
+    private boolean isSecurityAnswerCorrect(User userToCheck, String answerInput){
         if (!(userToCheck.getSecurityAnswer().equals(answerInput))){
             Toast.makeText(getApplicationContext(), "Answer does not match. Please try again.", Toast.LENGTH_SHORT).show();
             return false;
@@ -95,9 +104,7 @@ public class ForgotActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean isUserInDB (String userID){
-        User userToCheck = userDAO.getUserById(Integer.parseInt(userID));
-
+    private boolean isUserInDB (User userToCheck){
         //check if the username and password match a user in the database
         if((userToCheck != null)){
             Toast.makeText(getApplicationContext(), "User does not exist. Create an account.", Toast.LENGTH_SHORT).show();

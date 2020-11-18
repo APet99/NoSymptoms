@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--tools:context=".Questionnaire">-->
 
     <TextView
+        android:id="@+id/questionnaire"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -17,6 +17,126 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"  />
+
+    <TextView
+        android:id="@+id/question1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Are you down with the sickness?"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/questionnaire" />
+
+    <RadioGroup
+        android:id="@+id/q1_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/question1">
+        <RadioButton android:id="@+id/q1_radio_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"/>
+        <RadioButton android:id="@+id/q1_radio_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"/>
+    </RadioGroup>
+
+    <TextView
+    android:id="@+id/question2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Have you been in contact with the RONA in the last 14 days?"
+    android:textSize="20sp"
+    android:layout_marginTop="30dp"
+    android:layout_marginStart="5dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/question1" />
+
+    <RadioGroup
+        android:id="@+id/q2_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/question2">
+        <RadioButton android:id="@+id/q2_radio_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"/>
+        <RadioButton android:id="@+id/q2_radio_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/question3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Do you have any of the following symptoms?"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/question2" />
+
+        <CheckBox android:id="@+id/q3_check_symp1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@id/question3"
+            android:text="Cough"/>
+        <CheckBox android:id="@+id/q3_check_symp2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/q3_check_symp1"
+            android:text="Shortness of Breath"/>
+        <CheckBox android:id="@+id/q3_check_symp3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/q3_check_symp2"
+            android:text="Sneezing"/>
+        <CheckBox android:id="@+id/q3_check_symp4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/q3_check_symp3"
+            android:text="Fever"/>
+        <CheckBox android:id="@+id/q3_check_symp5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/q3_check_symp4"
+            android:text="Chills"/>
+        <CheckBox android:id="@+id/q3_check_symp6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/q3_check_symp5"
+            android:text="Runny Nose"/>
+
+    <TextView
+        android:id="@+id/invalid_questionnaire"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please answer all questions!"
+        android:textSize="20sp"
+        android:layout_marginStart="5dp"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/photo_button" />
+
 
     <Button
         android:id="@+id/photo_button"

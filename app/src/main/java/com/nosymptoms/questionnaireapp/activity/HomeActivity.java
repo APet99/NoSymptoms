@@ -19,14 +19,18 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 
 import com.nosymptoms.questionnaireapp.R;
+import com.nosymptoms.questionnaireapp.model.LogEntry;
 import com.nosymptoms.questionnaireapp.ui.main.SectionsPagerAdapter;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
     Map<Integer,String> linkMap;
+    public static List<LogEntry> log = new LinkedList<LogEntry>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

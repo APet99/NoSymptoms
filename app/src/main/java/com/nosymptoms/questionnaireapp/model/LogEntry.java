@@ -1,5 +1,7 @@
 package com.nosymptoms.questionnaireapp.model;
 
+import android.graphics.Bitmap;
+
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -16,10 +18,20 @@ public class LogEntry {
     int idNumber;
     Timestamp timeOfSubmission;
     String imageLocation;
+    Bitmap bitmap;
     HashMap<Integer, String> questionAnswerMap = new HashMap<>();
+    boolean cleared;
     String logID;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    //Simplified log entry for demo
+    public LogEntry(boolean cleared, Bitmap bitmap) {
+        this.timeOfSubmission = Timestamp.now();
+        this.cleared = cleared;
+        this.bitmap = bitmap;
+        this.logID = Calendar.getInstance().getTime().toString();
+    }
 
     public LogEntry(User user, Question[] questions, String[] answers, String imageLocation) {
         this.idNumber = user.getIdNumber();
@@ -91,4 +103,13 @@ public class LogEntry {
     public void setLogID(String logID) {
         this.logID = logID;
     }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public boolean isCleared() {
+        return cleared;
+    }
 }
+

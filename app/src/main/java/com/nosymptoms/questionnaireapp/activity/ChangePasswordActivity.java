@@ -11,7 +11,7 @@ import javax.inject.Inject;
 
 public class ChangePasswordActivity extends AppCompatActivity {
     @Inject
-    UserDao userDAO;
+    public UserDao userDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

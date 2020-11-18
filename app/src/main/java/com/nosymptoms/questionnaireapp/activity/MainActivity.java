@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         //Question q = new Question(4, Question.QuestionType.TRUE_FALSE,"Are you down with the sickness?", potentialAnswers);
         //createQuestion(q);
 
-        User u = new User(13245, "email2@email.com", "fName2", "lName2", "a;lsdkhjfgbasdlfk");          // Un-commenting the 2 lines of code and running will ADD to the firestore database.
+        User u = new User(13245, "email2@email.com", "fName2", "lName2", "a;lsdkhjfgbasdlfk", "Who is your mother", "your mom");          // Un-commenting the 2 lines of code and running will ADD to the firestore database.
 //
 //        String[] flaggedAnswers = new String[]{"No"};
 //

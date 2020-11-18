@@ -1,6 +1,10 @@
 package com.nosymptoms.questionnaireapp.dao;
 
+import androidx.annotation.NonNull;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -36,10 +40,18 @@ public class FirebaseUserDao implements UserDao {
     }
 
     @Override
-    public User getUserById(int id) {
-        DocumentReference docRef = db.collection("cities").document("BJ");
-        DocumentSnapshot documentSnapshot = docRef.get().getResult();
+    public void updateUser(User user){
+        ObjectMapper oMapper = new ObjectMapper();
+        CollectionReference usersRefs = db.collection("Users");
+        HashMap userMap = oMapper.convertValue(user, HashMap.class);
+        System.out.println(userMap.toString());
+        usersRefs.document(Integer.toString(user.getIdNumber())).set(userMap);
+    }
 
-        return documentSnapshot.toObject(User.class);
+    @Override
+    public DocumentReference getUserById(int id) {
+        DocumentReference docRef = db.collection("Users").document("" + id);
+
+        return docRef;
     }
 }

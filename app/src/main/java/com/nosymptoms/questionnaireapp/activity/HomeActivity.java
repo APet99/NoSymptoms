@@ -37,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
     }
 
     public void onCheckInButtonClick(View view) {

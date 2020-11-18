@@ -1,8 +1,11 @@
 package com.nosymptoms.questionnaireapp.dao;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.nosymptoms.questionnaireapp.model.User;
 
 public interface UserDao {
     void createUser(User user);
-    User getUserById(int id);
+    void updateUser(User user);
+    DocumentReference getUserById(int id);
 }

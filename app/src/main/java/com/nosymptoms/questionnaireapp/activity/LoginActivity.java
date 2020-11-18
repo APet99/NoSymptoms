@@ -39,14 +39,14 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginButtonClick(View view) {
         //check if user is valid
-        boolean isValid = isUserInDB(cbuIDNum.toString(), password.toString());
-
-        if(isValid){
-            String message = "Welcome " + userDAO.getUserById(Integer.parseInt(cbuIDNum.toString())).getFirstName() + "!";
-            welcome.setText(message);
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
-        }
+//        boolean isValid = isUserInDB(cbuIDNum.toString(), password.toString());
+////
+////        if(isValid){
+////            String message = "Welcome " + userDAO.getUserById(Integer.parseInt(cbuIDNum.toString())).getFirstName() + "!";
+////            welcome.setText(message);
+////            Intent intent = new Intent(this, HomeActivity.class);
+////            startActivity(intent);
+////        }
 
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);

@@ -11,10 +11,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="cbu_resource">CBU\'s COVID Developments</string>
     <string name="cdc_resource">CDC\'s COVID Page</string>
+    <string name="who_resource">WHO\'s COVID Page</string>
 
     <string-array name="links">
         <item>https://calbaptist.edu/news/cbu_update_coronavirus_1</item>
         <item>https://www.cdc.gov/coronavirus/2019-ncov/index.html</item>
+        <item>https://www.who.int/emergencies/diseases/novel-coronavirus-2019</item>
     </string-array>
 
 </resources>

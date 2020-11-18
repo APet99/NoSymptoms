@@ -243,7 +243,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public boolean isWithinMetersRadius(Location currentLocation, Location centerPoint, double meters){
         //System.out.println(!didSubmit("logID", "Fri Oct 09 13:54:09 PDT 2020///123456", "userRef","123456"));
-        if (centerPoint.distanceTo(currentLocation) < meters ){notifyByLocation();}
+        if (centerPoint.distanceTo(currentLocation) < meters && !QuestionnaireActivity.checkedIn){notifyByLocation();}
 
         return centerPoint.distanceTo(currentLocation) < meters;
     }
